@@ -1,5 +1,5 @@
-CHAIN_ROOT=/home/yang/imax283/ctools/gcc-4.4.4-glibc-2.11.1-multilib-1.0/arm-fsl-linux-gnueabi/bin
-CROSS_COMPILE=$(CHAIN_ROOT)/arm-none-linux-gnueabi-
+CHAIN_ROOT=/home/lxb/buildroot-2020.02.6/output/host/bin
+CROSS_COMPILE=$(CHAIN_ROOT)/mipsel-buildroot-linux-musl-
 
 #CHAIN_ROOT= /home/yang/b503/ctools/gcc-linaro-arm-linux-gnueabihf-4.9-2014.09_linux/bin
 #CROSS_COMPILE=$(CHAIN_ROOT)/arm-linux-gnueabihf-
@@ -14,12 +14,13 @@ TARBALL = InfoNES08J
 		./../InfoNES.cpp \
 		./../InfoNES_Mapper.cpp \
 		./../InfoNES_pAPU.cpp \
-		./InfoNES_System_Linux.cpp joypad_input.cpp
+		./InfoNES_System_Linux.cpp
+#joypad_input.cpp
 
 .OFILES	=	$(.CFILES:.cpp=.o)
 
-CCFLAGS =    -o2 -fsigned-char  -I../
-LDFILGS = -lstdc++	-L../libs	# gcc3.x.x
+CCFLAGS =    -o2 -fsigned-char  -I../ --sysroot /home/lxb/buildroot-2020.02.6/output/staging
+LDFILGS = -lstdc++	-L../libs	--sysroot /home/lxb/buildroot-2020.02.6/output/staging# gcc3.x.x
 
 all: InfoNES
 
